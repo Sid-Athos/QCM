@@ -16,7 +16,7 @@
     $res = $stmt -> fetch();
     unset($query);
     $am = intval($res['ans_amount']);
-    if($am > 0 || $s === "bonne")
+    if($am > 0  || $s === "bonne")
     {
         $query[0] = 
         "UPDATE question
@@ -56,8 +56,8 @@
     }
     else 
     {
-        $message = alert("Il doit y avoir au moins une bonne 
+        echo $message = alert("Il doit y avoir au moins une bonne 
         réponse afin de valider le qcm. La question $q et la réponse $a 
-        n'ont pas été modifié.");
+        doivent être modifiées.");
     }
 ?>

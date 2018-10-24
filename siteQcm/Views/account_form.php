@@ -19,8 +19,9 @@
                 </center><br>
                 <input type="email"  class="form-control" name="email" value="<?php echo $results['email'];?>">
                 <center>
-                    <input type="checkbox"name="mod_mail" value="yes"> Modifier mon email </input>
+                    <input type="checkbox" name="mod_mail" style="border-radius:3px;border:none" value="yes"> Modifier mon email </input>
                 </center>
+                
             <br>
             <center>Mon mot de passe : </center><br>
                 <input type="password"   class="form-control" name="password" id ="pw0" value="<?php echo $results['pw'];?>">
@@ -29,7 +30,7 @@
                 </center>
             <br>
                 <input type="password" class="form-control" style="display:none" pattern="^[a-zA-Z0-9\_\-]{0,}$" name="new_pw" id ="pw1" minlength="3" value="" placeholder="Nouveau mot de passe..." >
-                <input type="password" class="form-control" style="display:none" name="c_pw" id ="pw2" value="" placeholder="confirmation du mot de passe...">
+                <input type="password" class="form-control" style="display:none" name="c_pw" id ="pw2" value="" placeholder="Confirmation du mot de passe...">
                 <center>
                     <input type="checkbox" onclick="showHide(event)"  name="lol" value="test"> Afficher le mot de passe </input><br>
                 </center>

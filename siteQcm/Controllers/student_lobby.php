@@ -2,7 +2,6 @@
     include('./Controllers/functions/PHP/session_check.php');
     include('./Models/db_connect.php');
     include('./Controllers/functions/PHP/messages.php');
-    
     switch(isset($_POST)):
         case(isset($_POST['go'])):
                 $qcm = intval(htmlspecialchars($_POST['choose_qcm']));

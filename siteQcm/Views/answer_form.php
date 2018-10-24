@@ -43,7 +43,7 @@
                                 <li> <input type ='text' class="circle-box" name='<?php  echo "a_id[$compteur][]";?>' 
                                 value='<?= $res[$i]['rep_id']?>' style='width:30px' pattern="^[0-9]+"  readonly> 
                                 Réponse <?= $ans?>: <input type='text' name='<?php echo "answer[$compteur][]?>";?>' class="textsa"
-                                required pattern="^[0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}" value='<?=$value?>'>
+                                required pattern="^[-0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}" value='<?=$value?>'>
                                 <select name='<?php echo "a_status[$compteur][]";?>' title='statut de la réponse'>
                                     <option value='<?= $res[$i]['statut'] ?>'><?=$res[$i]['statut']?></option>
                                     <option value='fausse'>fausse</option>
@@ -56,7 +56,7 @@
                                 ?><li> <input type ='text' class="circle-box" name='<?php  echo "a_id[$compteur][]";?>'
                                 value='<?= $res[$i]['rep_id']?>' pattern="^[0-9]+" style='width:30px' readonly> 
                                 Réponse <?= $ans?>: <input type='text' name='<?php echo "answer[$compteur][]?>";?>' class="textsa"
-                                required pattern="^[0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$" value='<?=$value?>'>
+                                required pattern="^[-0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$" value='<?=$value?>'>
                                 <select name='<?php echo "a_status[$compteur][]";?>' title='statut de la réponse'>
                                     <option value='<?= $res[$i]['statut'] ?>'><?=$res[$i]['statut']?></option>
                                     <option value='bonne'>bonne</option>
@@ -87,7 +87,7 @@
                             {
                                 ?><li> <input type ='text' class="circle-box" name='<?php  echo "a_id[$compteur][]";?>' value='<?= $res[$i]['rep_id']?>' 
                                 pattern="^[0-9]+" style='width:30px' readonly>
-                                Reponse <?=$ans?> :<input type='text' pattern="^[0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$" required class="textsa"
+                                Reponse <?=$ans?> :<input type='text' pattern="^[-0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$" required class="textsa"
                                 name='<?php echo "answer[$compteur][]";?>' value='<?= $value?>'>
                                 <select name='<?php echo "a_status[$compteur][]";?>' title='statut de la réponse'>
                                     <option value='<?= $res[$i]['statut'] ?>'><?=$res[$i]['statut']?></option>
@@ -100,7 +100,7 @@
                                 ?><li> <input type ='text' class="circle-box" name='<?php  echo "a_id[$compteur][]";?>' value='<?= $res[$i]['rep_id']?>' 
                                 style='width:30px' readonly>
                                 Reponse <?=$ans?> :<input type='text' name='<?php echo "answer[$compteur][]";?>'required class="textsa"
-                                pattern="^[0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$"  value='<?= $value?>'>
+                                pattern="^[-0-9A-Za-z' \(\)\/+]{1,}[?!.]{0,}$"  value='<?= $value?>'>
                                 <select name='<?php echo "a_status[$compteur][]";?>' title='statut de la réponse'>
                                     <option value='<?= $res[$i]['statut'] ?>'><?=$res[$i]['statut']?></option>
                                     <option value='fausse'>fausse</option>

@@ -3,7 +3,7 @@
     include('./Models/db_connect.php');
     include('./Controllers/functions/PHP/messages.php');
     include('./Views/navbar.php');
-    var_dump($_POST);
+    
     switch(isset($_POST)):
         case(isset($_POST['choice'])):
                 switch($_POST['choice']):
@@ -181,11 +181,8 @@
                                 $q_id = intval(htmlspecialchars($_POST['q_id'][$i]));
                                 $a_id = intval(htmlspecialchars($_POST['a_id'][$i][$j]));
                                 include('./Models/update_q_a.php');
+                                $message = success("Questions/réponses modifiées!");
                             }
-                        }
-                        if(!isset($message))
-                        {
-                            $message = success("Questions/réponses modifiées!");
                         }
                     }
                 break;
@@ -197,15 +194,21 @@
                     break;
         case(isset($_POST['q_to_link'])):
                         include('./Views/teacher_choice.php');
-                        for($i = 0; $i < count($_POST['question']);$i++){
-                            if (isset($_POST['add'][$i])){
-                                $qcm = $_SESSION['qcm'];
-                                $q_id = intval(htmlspecialchars($_POST['q_id'][$i]));
-                                include('./Models/link_q.php');
+                        if(isset($_POST['question']))
+                        {
+                            for($i = 0; $i < count($_POST['question']);$i++){
+                                if (isset($_POST['add'][$i])){
+                                    $qcm = $_SESSION['qcm'];
+                                    $q_id = intval(htmlspecialchars($_POST['q_id'][$i]));
+                                    include('./Models/link_q.php');
+                                }
                             }
+                            unset($_SESSION['qcm']);
+                            $message = success("Questions/réponses modifiées!");
+                        } else 
+                        {
+                            $message = alert("Aucune question n'a été choisie!");
                         }
-                        unset($_SESSION['qcm']);
-                        $message = success("Questions/réponses modifiées!");
                     break;
         case(isset($_POST['Enregistrer'])):
                 for($i = 0; $i < count($_POST['question']);$i++){
@@ -237,7 +240,7 @@
         include('./Models/work_bitch.php');
         if(!empty($res)){
             if(intval($res[0]['qcmAmount']) === intval($res[0]['passerAmount'])){
-                echo "<script> alert('Tous les QCM ont été passés. Work bitch.');</script>";
+                echo "<script> alert('Tous les QCM ont été passés. \rIt is now the time to go to the charbon');</script>";
             }
         }
     }

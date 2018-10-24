@@ -12,7 +12,7 @@
                                 pattern="^[0-9A-Za-z' \(\)\/+]{1,}[?.]+" name='question[]' id='question[]'
                                 placeholder="Intitulé de la question.." required>
                                 Réponse : <input type='text' name='answer[]' class='form-control' minlength='2' 
-                                pattern="[0-9A-Za-z' \(\)\/+]{1,}[!?.]{0,}$" style="max-width:150px"
+                                pattern="[-0-9A-Za-z' \(\)\/+]{1,}[!?.]{0,}$" style="max-width:150px"
                                 placeholder="Réponse..."
                                 title='Veuillez saisir la réponse de la question' required>
                                 <br>
@@ -22,8 +22,8 @@
                         }
                     ?>
 
-                    </div>
                 <input type="submit" name="Enregistrer" class="btn btn-secondary"  value="Enregistrer">
+                    </div>
                 </form>
             </div>
         </div>

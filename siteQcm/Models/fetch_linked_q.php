@@ -1,6 +1,6 @@
 <?php
     $query =
-    "SELECT proposer.id as ID, question.question as question,reponse.id as rep_id, reponse.reponse as reponse, proposer.statut,
+    "SELECT question.id as ID, proposer.id as p_ID, question.question as question,reponse.id as rep_id, reponse.reponse as reponse, proposer.statut,
     (SELECT count(proposer.reponse) FROM proposer WHERE proposer.question = question.id) as answersAmount
     FROM proposer JOIN question ON proposer.question = question.id 
     JOIN reponse ON proposer.reponse = reponse.id 

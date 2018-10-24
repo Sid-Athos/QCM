@@ -1,11 +1,12 @@
-<div id="time" style="font-weight:800;color:#525252;font-size:24px;position:absolute;right:0;bottom:0"></div>
 <div id="answer"></div>
-<div>
+<div id="txt">
 <?php
     if(isset($message)){
         echo $message;
     }
-?>
+    ?>
+</div>
+    <div id="time" style="font-weight:800;color:#525252;font-size:24px;position:absolute;right:10px;top:0"></div>
 <div class="row">
     <div class="col-xs-12" style="display:block;margin:auto;margin-top:90px;text-align:center">
         <form name="change_answers" action="./index.php?page=lobby" method="POST">
@@ -136,6 +137,7 @@
                 document.getElementById('time').style.color = "#b20a2c";
             }
             document.getElementById('time').textContent = compteur;
+            console.log(compteur);
             setTimeout(hurryUp,1000);
         } else {
             for(i = 0; i < letsPlay.length;i++){

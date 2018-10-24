@@ -1,7 +1,7 @@
 <?php
     if(!empty($res)){
         ?>
-Choisissez une question à modifier :<br>
+Choisissez une question à supprimer du QCM :<br>
 <?php    
     for($i = 0; $i < count($res);$i++)
     {

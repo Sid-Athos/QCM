@@ -8,7 +8,7 @@
         SELECT proposer.question 
         FROM proposer 
         WHERE proposer.id = :prop
-        )";
+        ) ORDER BY proposer.id";
 
     try 
     {
