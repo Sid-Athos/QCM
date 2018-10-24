@@ -1,0 +1,2 @@
+ce dossier n'est plus utilisé
+je le garde au cas ou, on ne sait jamais, si les nouveaux fichiers dans la vue (dossier : div) ne marchent pas, j'aurais ceux-ci qui étaient fonctionnels en premiers
