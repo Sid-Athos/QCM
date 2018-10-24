@@ -19,7 +19,8 @@
             </button>
                 <div class="dropdown-menu" style="background-color:transparent;margin-right:-13px;margin-top:-8px;border:none" aria-labelledby="dropdownMenuButton">
                     <button class="btn btn-secondary" type="submit" name ="choice" value="a_mod">Modifier des questions ou des réponses</button><br>
-                    <button class="btn btn-secondary" type="submit" name="choice" value="mod">Modifier un QCM</button><br>
+                    <button class="btn btn-secondary" type="submit" name="choice" value="unlink_a">Délier les réponses d'une question</button><br>
+                    <button class="btn btn-secondary" type="submit" name="choice" value="mod">Délier des questions à un QCM</button><br>
                 </div>
         </div>
         <div class="dropdown">

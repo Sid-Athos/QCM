@@ -3,7 +3,7 @@
     include('./Models/db_connect.php');
     include('./Controllers/functions/PHP/messages.php');
     include('./Views/navbar.php');
-    
+    var_dump($_POST);
     switch(isset($_POST)):
         case(isset($_POST['choice'])):
                 switch($_POST['choice']):
@@ -58,10 +58,22 @@
                             include('./Models/fetch_classes.php');
                             include('./Views/add_chapter.php');
                         break;
+                    case'unlink_a':
+                        include('./Models/fetch_linked_q.php');
+                        include('./Views/unlink_a.php');
+                    break;
                     default:
                         include('./errors/errors/404.php');
                 endswitch;
             break;
+        case(isset($_POST['unlink_ans'])):
+                    for($i = 0;$i < count($_POST['unlink_ans']);$i++)
+                    {
+                        $proposition = intval(htmlspecialchars($_POST['unlink_ans'][$i]));
+                        include('./Models/unlink_ans.php');
+                    }
+                    include('./Views/teacher_choice.php');
+                break;
         case(isset($_POST['new_sub'])):
                     $sub = htmlspecialchars($_POST['subject']);
                     include('./Models/new_sub.php');
