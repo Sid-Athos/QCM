@@ -1,5 +1,6 @@
 <?php
     session_start();
+    var_dump($_POST);
     include('./Views/html_top.php');
     switch(isset($_GET)):
         case(isset($_GET['page'])):

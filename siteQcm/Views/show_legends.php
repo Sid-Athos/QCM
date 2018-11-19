@@ -98,7 +98,7 @@
         </h5>
       </div>
       <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
+        <div class="card-body" style="color:#333333;text-align:center">
         <?php
           if(!empty($res2)){
       ?>

@@ -3,7 +3,7 @@
     function alert($string) {
         return $string = "<center><div class='alert alert-danger alert-dismissible fade show'
         style='background:#f83600;z_index:3;text-align:center;position:absolute;
-        left:600px;top:100px;display:inline-block;white-space:no-wrap;
+        left:800px;top:100px;display:inline-block;white-space:no-wrap;
         height:auto;font-size:13px;width:auto;color:#FFFFFF;border:0.5px solid #decba4;
         max-width:300px'>
         ".$string."<button type='button' class='close' style='margin-top:-10px'data-dismiss='alert' aria-label='Close'>

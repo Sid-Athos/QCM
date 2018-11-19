@@ -24,6 +24,8 @@
       <input type="button" name="c" class="btn btn-secondary"
       onclick="append(event)" id="lol" 
       value="+ Nouvelle question">
+      <button name="supp" value="supp" id="maman" class="btn btn-secondary"
+      onclick="killLastDiv(event)">Supprimer la dernière paire</button>
       <button class="btn btn-secondary" type="submit" 
       name="link_q" onclick="res(event)" 
       value ="Lier des questions existantes">
@@ -33,7 +35,8 @@
       name="choice" value="q_add">
       Réinitialiser
       </button><br>
-      <input type="submit" class="btn btn-secondary" name="new_q" id="choice" value="Ajouter"><br>
+      <button type="submit" class="btn btn-secondary" name="new_q" id="choice" value="Ajouter">
+      Ajouter</button><br>
       </form>
     <a href="./index.php?page=lobby">Retour accueil enseignant</a>
   </div>
@@ -53,65 +56,56 @@ $('#qcm_c').change(function(event){
 });
 </script>
 <script>
+  function killLastDiv(event)
+  {
+    event.preventDefault();
+    var liste = document.getElementsByClassName('allDivs'); 
+    liste[liste.length-1].remove();
+  }
+</script>
+<script>
 var count = 0;
 function append(event){
-  event.preventDefault();
-  var input_q = document.createElement('input');
-  var input_a = document.createElement('input');
-  var br = document.createElement('br');
-  var text_q = document.createTextNode(' Nouvelle question : ');
-  var text_a = document.createTextNode(' Réponse : ')
-  input_q.type = "text";
-  input_q.name ="question[]";
-  input_q.setAttribute("class","form-control");
-  input_q.style.textAlign ="center";
-  input_q.pattern = "^[\(\)a-zA-Z0-9, -]{0,}[?.]+$";
-  input_q.required = true;
-  input_a.type = "text";
+  event.preventDefault();    // Quand tu cliques sur un bouton dans un form, généralement ça envoie la donnée. Cette ligne évite d'envoyer le formulaire en cliquant sur le bouton (preventDefault, évite l'action par défaut, donc le submit)
+  var div = document.createElement('div');  // Je crée un Div dans lequel mettre les champs (ça me permet de supprimer deux input en 1 click. Supprimer le conteneur est plus rapique que supprimer chaque élément)
+  div.id = count;  //J'attribue un id au div, afin de connaître le nombre de div existant et supprimer le dernier uniquement
+  div.setAttribute('class','allDivs'); // Je donne une classe au div,juste pour un éventuel css
+  var input_q = document.createElement('input'); // Je crée un élément de type input (la question)
+  var input_a = document.createElement('input'); // Je crée un deuxième élément de type input (la réponse)
+  var br = document.createElement('br');//Je crée un <br> afin que les deux input ne soient pas alignés
+  var text_q = document.createTextNode(' Nouvelle question : ');//Je crée un élément texte pour décrire l'input question
+  var text_a = document.createTextNode(' Réponse : ');//Pareil avec la réponse
+  input_q.type = "text";//J'attribue un type à l'input
+  input_q.name ="question[]";//J'attribue une nom, les [] me servent à faire un tableau avec chaque input du même nom, ça push
+  input_q.setAttribute("class","form-control");// J'attribue une classe pour le CSS à l'input de la question
+  input_q.style.textAlign ="center";// Je dis que pour cet élément, en style CSS, le texte sera aligné au centre
+  input_q.pattern = "^[\(\)a-zA-Z0-9, -]{0,}[?.]+$";// Je donne un pattern obligatoire. Ici l'utilisateur à droit aux parenthèses, tirets, caractères alphanumériques et un ? ou un . en ponctuation
+  input_q.required = true;// je spécifie le fait quel'élément est requis pour valider mon formulaire
+  input_a.type = "text";// Là je fais pareil avec le deuxième 
   input_a.name ="answer[]";
   input_a.setAttribute("class","form-control");
   input_a.style.textAlign ="center";
   input_a.pattern = "^[\(\)a-zA-Z0-9,-_ ]{0,}$";
   input_a.required = true;
-  /**var select_s = document.createElement('select');
-  select_s.name = "statut[]";
-  var option_b = document.createElement('option');
-  option_b.value = "bonne";
-  var option_f = document.createElement('option');
-  option_f.value = "fausse";
-  option_f.text = "Fausse";
-  select_s.append(option_b);
-  select_s.append(option_f);*/
   var parentDiv = document.getElementById("lol").parentNode;
-  parentDiv.append(br);
-  parentDiv.append(br);
-  parentDiv.append(text_q);
-  parentDiv.append(input_q);
-  parentDiv.append(text_a);
-  parentDiv.append(input_a);
-  //parentDiv.createtextNode('Question : ');
-  //parentDiv.append(select_s);
-  parentDiv.append(br);
-  parentDiv.append(document.getElementById('choice'));
+  parentDiv.append(div);
+  div.append(text_q);
+  div.append(input_q);
+  div.append(text_a);
+  div.append(input_a);
   count++;
 }
 </script>
 <script>
 function reload(event){
-  var letsPlay = document.getElementsByTagName('input');
+  event.preventDefault();
+  var letsPlay = document.getElementsByTagName('div');
+  console.log(letsPlay);
   for(i = 0; i < letsPlay.length; i++){
-    letsPlay[i].required = false;
-    letsPlay[i].removeAttribute('pattern');
-  }
-}
-</script>
-<script>
-function res(event){
-  var letsPlay = document.getElementsByTagName('input');
-  for(i = 0; i < letsPlay.length; i++){
-    if(letsPlay[i].name === "question[]"){
-      event.preventDefault();
-        alert('Veuillez remplir tous les champs avant de pouvoir lier de nouvelles questions');
+    if(letsPlay[i].className === "allDivs")
+    {
+        letsPlay[i].remove();
+
     }
   }
 }

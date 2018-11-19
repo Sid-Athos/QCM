@@ -1,3 +1,43 @@
+<?php if(isset($css)){
+  if($css['passAmount'] === $css['qcmAmount']){
+    ?>
+    <style>
+      body{
+        background-color:#525252;
+        color:#decba4;
+      }
+      table{
+        color:#333333;
+      }
+    </style>
+    <?php
+  } else {
+    ?>
+    <style>
+      body{
+        background-color:#525252;
+        color:#decba4;
+      }
+      table{
+        color:#333333;
+      }
+    </style>
+    <?php
+  }
+} else {
+  ?>
+    <style>
+      body{
+        background-color:#525252;
+        color:#decba4;
+      }
+      table{
+        color:#333333;
+      }
+    </style>
+  <?php
+}
+?>
 <div class="topnav" id="myTopnav">
 <?php if(isset($_SESSION['pic']) && $_SESSION['pic'] !== ""){?><img src="<?php echo $_SESSION['pic'];?>" style="width:50px;height:50px;border-radius:50%;opacity: 0.75;filter: alpha(opacity=50)"><?php } ?>
 Bonjour <?php echo $_SESSION['pseudo'];?> Il est <span id="txt"></span>

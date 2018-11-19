@@ -63,12 +63,19 @@
     endswitch;
     if($_SESSION['status'] === "t")
     {
-        include('./Models/work_bitch.php');
+        if(!isset($_POST['choice']) || $_POST['choice'] !== "add"){
+            include('./Models/fetch_qcm.php');
+            if(empty($results)){
+                $message = alert("Aucun QCM existant!!");
+                echo "<script>alert('Il faut charbonner, y a pas de QCM!');</script>";
+            } 
+            include('./Models/work_bitch.php');
             if(!empty($res)){
                 if(intval($res[0]['qcmAmount']) === intval($res[0]['passerAmount'])){
-                    echo "<script> alert('Tous les QCM ont été passés. Work bitch.');</script>";
+                    echo "<script> alert('Tous les QCM ont été passés. \rIt is now the time to go to the charbon');</script>";
                 }
             }
+        }
     }
     include('./Views/message.php');
 ?>

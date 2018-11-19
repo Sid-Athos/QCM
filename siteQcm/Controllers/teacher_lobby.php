@@ -59,11 +59,17 @@
                             include('./Views/add_chapter.php');
                         break;
                     case'unlink_a':
-                        include('./Models/fetch_linked_q.php');
-                        include('./Views/unlink_a.php');
-                    break;
+                            include('./Models/fetch_linked_q.php');
+                            include('./Views/unlink_a.php');
+                        break;
+                        // SELECT chapitre.id, chapitre.titre 
+                        //FROM chapitre WHERE chapitre.id != 
+                        //ALL(
+                            //SELECT chapitre.id FROM qcm JOIN passer ON qcm.id = passer.qcm JOIN chapitre on qcm.chapitre = chapitre.id 
+                            //JOIN matiere ON matiere.id = chapitre.matiere
+                            //)
                     default:
-                        include('./errors/errors/404.php');
+                            include('./errors/errors/404.php');
                 endswitch;
             break;
         case(isset($_POST['unlink_ans'])):
@@ -78,6 +84,7 @@
                     $sub = htmlspecialchars($_POST['subject']);
                     include('./Models/new_sub.php');
                     $message = success("Matière ajoutée!");
+                    include('./Views/teacher_choice.php');
                 break;
         case(isset($_POST['qc_name'])):
                 $chap = explode("-",$_POST['sub_chap']);
@@ -98,25 +105,25 @@
                 } else {
                     $message = alert("Il faut saisir au moins une question!");
                 }
+                include('./Views/teacher_choice.php');
             break;
-        case(isset($_POST['q_unlink'])):
+        case(isset($_POST['unlink'])):
                     $qcm = htmlspecialchars($_POST['qcm_choice']);
                     include('./Models/fetch_qcm_id.php');
                     unset($res);
-                    if(isset($_POST['unlink']))
+                    for($i = 0; $i < count($_POST['unlink']);$i++)
                     {
-                        for($i = 0; $i < count($_POST['unlink']);$i++)
-                        {
-                            $q = htmlspecialchars($_POST['unlink'][$i]);
-                            include('./Models/unlink_q.php');
-                        }
+                        $q = htmlspecialchars($_POST['unlink'][$i]);
+                        include('./Models/unlink_q.php');
                     }
+                    include('./Views/teacher_choice.php');                    
                 break;
         case(isset($_POST['add_chap'])):
                         $chap = htmlspecialchars($_POST['chap_name']);
                         $s = $_POST['s_link'];
                         include('./Models/add_chap.php');
                         $message = success("Chapitre ajouté et lié");
+                    include('./Views/teacher_choice.php');
                     break;
         case(isset($_POST['new_q'])):
                 $qcm_check = htmlspecialchars($_POST['qcm_choice']);
@@ -128,6 +135,7 @@
                         $message = success("Vos questions ont bien été ajoutées.");
                     }
                 }
+                include('./Views/teacher_choice.php');
             break;
             case(isset($_POST['new_a'])):
                     if(isset($_POST['question']) && isset($_POST['answer'])){
@@ -144,6 +152,7 @@
                         header('refresh:5;url=./index.php?page=lobby');
                         $_POST['choice'] = 'new_q';
                     }
+                    include('./Views/teacher_choice.php');
                 break;
         case(isset($_POST['kill_a'])):
                     if(isset($_POST['question'])){
@@ -155,6 +164,7 @@
                             }
                         }
                     }
+                    include('./Views/teacher_choice.php');
                 break;
         case(isset($_POST['kill_q'])):
                         if(isset($_POST['kill'])){
@@ -168,7 +178,7 @@
                                 }
                             }
                         }
-                        
+                    include('./Views/teacher_choice.php');                        
                 break;
         case(isset($_POST['mod_q_a'])):
                     /** FIRE IN THE HOLE */
@@ -185,15 +195,16 @@
                             }
                         }
                     }
+                    include('./Views/teacher_choice.php');
                 break;
         case(isset($_POST['link_q'])):
                         $qcm = htmlspecialchars($_POST['qcm_choice']);
                         include('./Models/fetch_unlinked_q.php');
                         include('./Views/link_q.php');
                         $_SESSION['qcm'] = $qcm;
+                        include('./Views/teacher_choice.php');
                     break;
         case(isset($_POST['q_to_link'])):
-                        include('./Views/teacher_choice.php');
                         if(isset($_POST['question']))
                         {
                             for($i = 0; $i < count($_POST['question']);$i++){
@@ -209,6 +220,7 @@
                         {
                             $message = alert("Aucune question n'a été choisie!");
                         }
+                        include('./Views/teacher_choice.php');
                     break;
         case(isset($_POST['Enregistrer'])):
                 for($i = 0; $i < count($_POST['question']);$i++){
@@ -218,6 +230,7 @@
                 }
                // header('refresh:5;url=./index.php?page=lobby');
                 $message = success("Vos questions ont bien été ajoutées.");
+                include('./Views/teacher_choice.php');
             break;
         case(isset($_POST['kill_qcm'])):
                 if(isset($_POST['check']) && isset($_POST['qcm_kill'])){
@@ -228,8 +241,10 @@
                         }
                     }
                 }
+                include('./Views/teacher_choice.php');
             break;
         default:
+        include('./Views/teacher_choice.php');
     endswitch;
     if(!isset($_POST['choice']) || $_POST['choice'] !== "add"){
         include('./Models/fetch_qcm.php');
@@ -244,6 +259,5 @@
             }
         }
     }
-    include('./Views/teacher_choice.php');
     include('./Views/message.php');
 ?>

@@ -1,8 +1,21 @@
 <div class="row">
     <div class="col-xs-12" style="margin:auto">
-        <form method="POST" id="post"  enctype="multipart/form-data">
+        <form method="POST" id="post"  enctype="multipart/form-data" 
+        style="margin-bottom:25px">
             <center>
-            <span style="color:#333333">
+            <span style=
+            <?php 
+                if($_SESSION['status'] === "s") 
+                { ?>
+                "color:#FFFFFF"
+                <?php 
+                    } else 
+                    {
+                ?> 
+                "color:#333333" 
+                <?php 
+                    }
+                ?>>
             <h4>
             Ici, vous pouvez modifiez vos informations personnelles
             </h4>
@@ -116,5 +129,9 @@ function readURL(input) {
     $("#pic").click(function(event){
         event.preventDefault();
         $("#file").click();
+    });
+    $("#file").change(function(event){
+        console.log(document.getElementById("file"));
+        document.getElementById("pic").textContent = document.getElementById("file").value;
     });
 </script>

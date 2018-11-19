@@ -3,7 +3,7 @@
     include('./Models/db_connect.php');
     include('./Controllers/functions/PHP/messages.php');
     switch(isset($_POST)):
-        case(isset($_POST['go'])):
+        case(isset($_POST['choose_qcm'])):
                 $qcm = intval(htmlspecialchars($_POST['choose_qcm']));
                 include('./Models/fetch_qcm_q_a.php');
                 include('./Views/pass_qcm.php');
